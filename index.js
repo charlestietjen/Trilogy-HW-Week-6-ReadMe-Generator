@@ -46,6 +46,11 @@ const questions = [
         message: 'Enter any additional usage directions.'
     },
     {
+        type: 'input',
+        name: 'testInstructions',
+        message: 'Enter test instructions'
+    },
+    {
         type: 'confirm',
         name: 'collabConfirm',
         message: 'Do you have any collaborators to list?',
@@ -55,18 +60,62 @@ const questions = [
         type: 'input',
         name: 'collabEntry',
         message: 'Enter all collaborators seperated by commas.',
-        when: ({ collabConfirm }) => collabConfirm
+        when: ({ collabConfirm }) => collabConfirm,
+        validate: collabInput => {
+            if (collabInput) {
+                return true;
+            } else {
+                console.log('Please enter your collaborators.');
+                return false;
+            };
+        }
     },
     {
         type: 'list',
         name: 'licenseSelect',
         message: 'Select the license for your project.',
-        choices: ['Apache 2.0', 'Boost 1.0', 'BSD 3', 'CC BY 4.0', 'GNU GPL v3', 'MIT', 'PDDL', 'WTFPL']
+        choices: ['None', 'Apache 2.0', 'Boost 1.0', 'BSD 3', 'CC BY 4.0', 'GNU GPL v3', 'MIT'],
+        filter(val) {
+            if (val === 'GNU GPL v3'){
+                val = 'GPLv3'
+            };
+            return val = val.replaceAll(" ", "_")
+        },
+        default: 0
+    },
+    {
+        type: 'confirm',
+        name: 'contactConfirm',
+        message: 'Would you like to add a contact section?',
+        default: true
     },
     {
         type: 'input',
-        name: 'contributionDescription',
-        message: 'Enter any instructions for future collaborators, if applicable.'
+        name: 'gitHub',
+        message: 'Enter your GitHub username.',
+        when: ({ contactConfirm }) => contactConfirm,
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                console.log('Your Github username is required for the contact section.');
+                return false;
+            };
+        }
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Enter your email address.',
+        when: ({ contactConfirm }) => contactConfirm,
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                console.log('Your email address is required for the contact section.');
+                return false;
+            };
+        }
     }
 ];
 
