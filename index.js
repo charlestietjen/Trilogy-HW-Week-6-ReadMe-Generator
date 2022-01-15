@@ -20,7 +20,7 @@ const questions = [
     {
         type: 'input',
         name: 'projectDescription',
-        message: 'Enter a description of your project.',
+        message: 'Enter a description of your project:',
         validate: descriptionInput => {
             if (descriptionInput) {
                 return true;
@@ -33,22 +33,22 @@ const questions = [
     {
         type: 'input',
         name: 'screenshotPath',
-        message: 'Enter the path and filename of your project screenshot.'
+        message: 'Enter the path and filename of your project screenshot:'
     },
     {
         type: 'input',
         name: 'installDescription',
-        message: 'Enter any installation instructions, if applicable.'
+        message: 'Enter any installation instructions, if applicable:'
     },
     {
         type: 'input',
         name: 'usageDescription',
-        message: 'Enter any additional usage directions.'
+        message: 'Enter any additional usage directions, if applicable:'
     },
     {
         type: 'input',
         name: 'testInstructions',
-        message: 'Enter test instructions'
+        message: 'Enter test instructions, if applicable:'
     },
     {
         type: 'confirm',
@@ -59,7 +59,7 @@ const questions = [
     {
         type: 'input',
         name: 'collabEntry',
-        message: 'Enter all collaborators seperated by commas.',
+        message: 'Enter all collaborators seperated by commas:',
         when: ({ collabConfirm }) => collabConfirm,
         validate: collabInput => {
             if (collabInput) {
@@ -73,7 +73,7 @@ const questions = [
     {
         type: 'list',
         name: 'licenseSelect',
-        message: 'Select the license for your project.',
+        message: 'Select the license for your project:',
         choices: ['None', 'Apache 2.0', 'Boost 1.0', 'BSD 3', 'CC BY 4.0', 'GNU GPL v3', 'MIT'],
         filter(val) {
             if (val === 'GNU GPL v3'){
@@ -92,7 +92,7 @@ const questions = [
     {
         type: 'input',
         name: 'gitHub',
-        message: 'Enter your GitHub username.',
+        message: 'Enter your GitHub username:',
         when: ({ contactConfirm }) => contactConfirm,
         validate: githubInput => {
             if (githubInput) {
@@ -106,7 +106,7 @@ const questions = [
     {
         type: 'input',
         name: 'email',
-        message: 'Enter your email address.',
+        message: 'Enter your email address:',
         when: ({ contactConfirm }) => contactConfirm,
         validate: emailInput => {
             if (emailInput) {
@@ -131,6 +131,7 @@ function writeToFile(fileName, data) {
                 ok: true,
                 message: 'Readme Created!'
             });
+            console.log("/dist/Readme.md Created!");
         });
     });
 };
@@ -138,7 +139,7 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 async function init() {
     inquirer.prompt(questions).then((answers) => {
-        writeToFile('./dist/readme.md', generateMarkdown(answers))});
+        writeToFile('./dist/Readme.md', generateMarkdown(answers))});
     };
 
 // Function call to initialize app

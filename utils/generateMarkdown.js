@@ -39,10 +39,10 @@ function renderLicenseSection(license) {
   }
   return `
   
-  ## License
-  Available for use under. [!${renderLicenseBadge(license)}](${renderLicenseLink(license)}) Click for more information.
+## License
+Available for use under. [!${renderLicenseBadge(license)}](${renderLicenseLink(license)}) Click for more information.
 
-  `
+`
 };
 
 function generateSsPath(path){
@@ -52,10 +52,10 @@ function generateSsPath(path){
 
   // section with image markdown and a seperator below
   return `
-  ## Screenshot
-  ![Project Screenshot](${path}?raw=true)
+## Screenshot
+![Project Screenshot](${path}?raw=true)
 
-  `;
+`;
 };
 
 // function to generate a section for use with optional inputs
@@ -66,11 +66,11 @@ function generateOptionalSect(sTitle, desc) {
   };
 
   // generic section with seperator below
-  return `
-  ## ${sTitle}
-  ${desc}
+return `
+## ${sTitle}
+${desc}
 
-  `;
+`;
 };
 
 function generateContactSection(github, email){
@@ -78,12 +78,12 @@ function generateContactSection(github, email){
     return '';
   };
 
-  return `
-  ## Contact Me
-  Find me at [GitHub](https://github.com/${github})
+return `
+## Contact
+Find me at [GitHub](https://github.com/${github})
 
-  Reach me by email at ${email}
-  `
+Reach me by email at ${email}
+`
 };
 
 function generateCollabSect(collabs) {
@@ -94,19 +94,32 @@ function generateCollabSect(collabs) {
   //split collaborators by commas and create a mini section for each
   const collabArr = collabs.split(","); 
   return `
-  ## Collaborators
-  ${collabArr.map(collab => collab).join(',')}
+## Collaborators
+${collabArr.map(collab => collab).join(',')}
 
   `
 };
 
+function generateContents(section, content) {
+  if (!content) {
+    return '';
+  };
+
+  return `
+-[${section}](#${section})
+`};
+
 
 // TODO: Create a function to generate markdown for README
 module.exports = function generateMarkdown(data) {
-  const { screenshotPath, installDescription, usageDescription, collabEntry, licenseSelect, contributionDescription, testInstructions, gitHub, email, ...req } = data;
-  return `# ${req.title}
+const { screenshotPath, installDescription, usageDescription, collabEntry, licenseSelect, contributionDescription, testInstructions, gitHub, email, ...req } = data;
+return `# ${req.title}
 
-  ## Description
-  ${req.projectDescription} ${renderLicenseSection(licenseSelect)} ${generateSsPath(screenshotPath)} ${generateOptionalSect('Installation', installDescription)} ${generateOptionalSect('How to Use', usageDescription)} ${generateOptionalSect('Test Instructions', testInstructions)} ${generateContactSection(gitHub, email)} ${generateCollabSect(collabEntry)}
-  `;
+## Contents
+
+${generateContents('Description', req.projectDescription)}${generateContents('License', licenseSelect)}${generateContents('Screenshot', screenshotPath)}${generateContents('Installation', installDescription)}${generateContents('Usage', usageDescription)}${generateContents('Testing', testInstructions)}${generateContents('Contact', gitHub)}${generateContents('Collaborators', collabEntry)}
+
+## Description
+${req.projectDescription} ${renderLicenseSection(licenseSelect)} ${generateSsPath(screenshotPath)} ${generateOptionalSect('Installation', installDescription)} ${generateOptionalSect('Usage', usageDescription)} ${generateOptionalSect('Testing', testInstructions)} ${generateContactSection(gitHub, email)} ${generateCollabSect(collabEntry)}
+`;
 };
