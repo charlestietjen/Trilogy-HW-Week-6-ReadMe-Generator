@@ -38,6 +38,7 @@ function renderLicenseSection(license) {
     return '';
   }
   return `
+  
   ## License
   Available under [!${renderLicenseBadge(license)}](${renderLicenseLink(license)})
 
