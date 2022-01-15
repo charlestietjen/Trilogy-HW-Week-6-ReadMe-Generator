@@ -22,6 +22,6 @@
     
   ## Contact Me
   Find me at [GitHub](https://github.com/charlestietjen)
-  Reach me by [email](mailto: charles@lowlevelgoblin.com)
+  Reach me by charles@lowlevelgoblin.com
    
   

@@ -5,7 +5,7 @@ function renderLicenseBadge(license) {
     return '';
   }
 
-  return `[License](https://img.shields.io/badge/License-${license}-blue.svg`;
+  return `[License](https://img.shields.io/badge/License-${license}-blue.svg)`;
 };
 
 // TODO: Create a function that returns the license link
@@ -40,7 +40,7 @@ function renderLicenseSection(license) {
   return `
   
   ## License
-  Available under [!${renderLicenseBadge(license)}](${renderLicenseLink(license)})
+  Available for use under. [!${renderLicenseBadge(license)}](${renderLicenseLink(license)}) Click for more information.
 
   `
 };
@@ -81,7 +81,8 @@ function generateContactSection(github, email){
   return `
   ## Contact Me
   Find me at [GitHub](https://github.com/${github})
-  Reach me by [email](mailto: ${email})
+
+  Reach me by email at ${email}
   `
 };
 
