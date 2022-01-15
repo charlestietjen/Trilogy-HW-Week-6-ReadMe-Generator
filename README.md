@@ -1,6 +1,6 @@
 # ReadMe.md Generator
 
-## Contents
+## Table of Contents
 
 
 -[Description](#Description)
