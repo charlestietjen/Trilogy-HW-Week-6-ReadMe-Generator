@@ -115,7 +115,7 @@ module.exports = function generateMarkdown(data) {
 const { screenshotPath, installDescription, usageDescription, collabEntry, licenseSelect, contributionDescription, testInstructions, gitHub, email, ...req } = data;
 return `# ${req.title}
 
-## Contents
+## Table of Contents
 
 ${generateContents('Description', req.projectDescription)}${generateContents('License', licenseSelect)}${generateContents('Screenshot', screenshotPath)}${generateContents('Installation', installDescription)}${generateContents('Usage', usageDescription)}${generateContents('Testing', testInstructions)}${generateContents('Contact', gitHub)}${generateContents('Collaborators', collabEntry)}
 
