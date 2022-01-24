@@ -28,7 +28,7 @@ Available for use under. [![License](https://img.shields.io/badge/License-CC_BY_
 
  
 ## Installation
-This application requires Node.js to run and depends on Inquirer for it's user prompts. You can install all dependencies by typing "node i" in a cmd or terminal window while in the root directory of the application.
+This application requires Node.js to run and depends on Inquirer for it's user prompts. You can install all dependencies by typing "npm i" in a cmd or terminal window while in the root directory of the application.
 
  
 ## Usage
